@@ -31,6 +31,8 @@ while running:
 
     # xxx ici c'est discutable, car si on tape 'q'
     # on va quand même changer de couleur avant de sortir...
+   
+    #création du damier
     width = 15 
     height = 15
     color=(255,255,255)
@@ -41,8 +43,15 @@ while running:
             if abs(x-y) % 30==0:
                 rect = pg.Rect(x, y, width, height)
                 pg.draw.rect(screen, color, rect)
-    #random_color = (randint(0, 255), randint(0, 255), randint(0, 255))
-    #screen.fill(random_color)
+   
+    #création d'un serpent fixe 
+    snake = [[10, 15],[11, 15],[12, 15]]    # les coordonnées du corps du serpent
+    red=(255,0,0)
+    pg.draw.rect(screen, red, pg.Rect(15*snake[0][0], 15*snake[0][1], 15, 15))
+    pg.draw.rect(screen, red, pg.Rect(15*snake[1][0], 15*snake[1][1], 15, 15))
+    pg.draw.rect(screen, red, pg.Rect(15*snake[2][0], 15*snake[2][1], 15, 15))
+    
+    
     pg.display.update()
 
 
