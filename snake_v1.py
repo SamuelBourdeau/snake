@@ -7,7 +7,7 @@ from random import randint
 import pygame as pg
 
 pg.init()
-screen = pg.display.set_mode((400, 300))
+screen = pg.display.set_mode((300, 300))
 clock = pg.time.Clock()
 
 # on rajoute une condition à la boucle: si on la passe à False le programme s'arrête
@@ -31,9 +31,18 @@ while running:
 
     # xxx ici c'est discutable, car si on tape 'q'
     # on va quand même changer de couleur avant de sortir...
-
-    random_color = (randint(0, 255), randint(0, 255), randint(0, 255))
-    screen.fill(random_color)
+    width = 15 
+    height = 15
+    color=(255,255,255)
+    for i in range(20):
+        for j in range(20):
+            x=i*15
+            y=j*15
+            if abs(x-y) % 30==0:
+                rect = pg.Rect(x, y, width, height)
+                pg.draw.rect(screen, color, rect)
+    #random_color = (randint(0, 255), randint(0, 255), randint(0, 255))
+    #screen.fill(random_color)
     pg.display.update()
 
 
