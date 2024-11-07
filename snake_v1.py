@@ -19,7 +19,7 @@ pomme=[randint(0,15),randint(0,15)]
 running = True
 while running:
 
-    clock.tick(2)
+    clock.tick(5)
 
     # on itère sur tous les évênements qui ont eu lieu depuis le précédent appel
     # ici donc tous les évènements survenus durant la seconde précédente
@@ -56,17 +56,18 @@ while running:
     #création d'une pomme
     if snake[0]==pomme:
         pomme=[randint(0,15),randint(0,15)]
+    else :
+        snake.pop()                 #permet de ne pas enlever le dernier bloc du serpent si on mange une pomme
     pg.draw.rect(screen, green, pg.Rect(pomme[0]*15,pomme[1]*15, 15, 15))
 
     #serpent qui bouge
         
     first_x, first_y=snake[0]
-    snake.pop()
     newcell_x, newcell_y=first_x + direction[0], first_y + direction[1]
     snake.insert(0, [newcell_x, newcell_y])
-    pg.draw.rect(screen, red, pg.Rect(15*snake[0][0], 15*snake[0][1], 15, 15))
-    pg.draw.rect(screen, red, pg.Rect(15*snake[1][0], 15*snake[1][1], 15, 15))
-    pg.draw.rect(screen, red, pg.Rect(15*snake[2][0], 15*snake[2][1], 15, 15))
+    for i in range (len(snake)):
+        pg.draw.rect(screen, red, pg.Rect(15*snake[i][0], 15*snake[i][1], 15, 15))
+    
 
     
 
