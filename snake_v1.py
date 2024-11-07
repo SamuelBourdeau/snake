@@ -18,7 +18,7 @@ black=(0,0,0)
 running = True
 while running:
 
-    clock.tick(1)
+    clock.tick(2)
 
     # on itère sur tous les évênements qui ont eu lieu depuis le précédent appel
     # ici donc tous les évènements survenus durant la seconde précédente
@@ -27,9 +27,15 @@ while running:
         # un type de pg.QUIT signifie que l'on a cliqué sur la "croix" de la fenêtre
         if event.type == pg.QUIT:
             running = False
-        
-    # xxx ici c'est discutable, car si on tape 'q'
-    # on va quand même changer de couleur avant de sortir...
+        elif event.type == pg.KEYDOWN:      #on prend les directions 
+            if event.key == pg.K_q and direction != [1,0]:  #il ne faut pas pouvoir revenir sur sois-même
+                direction = [-1,0]
+            elif event.key == pg.K_d and direction != [-1,0]:
+                direction = [1,0]
+            elif event.key == pg.K_z and direction != [0,1]:
+                direction = [0,-1]
+            elif event.key == pg.K_s and direction != [0,-1]:
+                direction = [0,1]
    
     #création du damier
     width = 15 
@@ -45,17 +51,9 @@ while running:
             else : 
                 rect = pg.Rect(x, y, width, height)
                 pg.draw.rect(screen, black, rect)
+    
     #serpent qui bouge
-    for event in pg.event.get():
-        if event.type == pg.KEYDOWN:
-            if event.key == pg.K_q:
-                direction = [-1,0]
-            elif event.key == pg.K_d:
-                direction = [1,0]
-            elif event.key == pg.K_z:
-                direction = [0,1]
-            elif event.key == pg.K_s:
-                direction = [0,-1]
+        
     first_x, first_y=snake[0]
     snake.pop()
     newcell_x, newcell_y=first_x + direction[0], first_y + direction[1]
