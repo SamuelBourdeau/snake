@@ -14,7 +14,8 @@ red=(255,0,0)
 direction = [1, 0]
 white=(255,255,255)
 black=(0,0,0)
-# on rajoute une condition à la boucle: si on la passe à False le programme s'arrête
+green=(0,255,0)
+pomme=[randint(0,15),randint(0,15)]
 running = True
 while running:
 
@@ -52,6 +53,11 @@ while running:
                 rect = pg.Rect(x, y, width, height)
                 pg.draw.rect(screen, black, rect)
     
+    #création d'une pomme
+    if snake[0]==pomme:
+        pomme=[randint(0,15),randint(0,15)]
+    pg.draw.rect(screen, green, pg.Rect(pomme[0]*15,pomme[1]*15, 15, 15))
+
     #serpent qui bouge
         
     first_x, first_y=snake[0]
@@ -61,7 +67,9 @@ while running:
     pg.draw.rect(screen, red, pg.Rect(15*snake[0][0], 15*snake[0][1], 15, 15))
     pg.draw.rect(screen, red, pg.Rect(15*snake[1][0], 15*snake[1][1], 15, 15))
     pg.draw.rect(screen, red, pg.Rect(15*snake[2][0], 15*snake[2][1], 15, 15))
+
     
+
     pg.display.update()
 
 # Enfin on rajoute un appel à pg.quit()
