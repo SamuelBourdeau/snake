@@ -39,7 +39,8 @@ def serpent(snake, direction):
     newcell_x, newcell_y=first_x + direction[0], first_y + direction[1]
     if [newcell_x,newcell_y] in snake:
         running = False
-    snake.insert(0, [newcell_x, newcell_y])
+    snake.insert(0, [newcell_x%20, newcell_y%20])
+
     for i in range (len(snake)):
         pg.draw.rect(screen, red, pg.Rect(15*snake[i][0], 15*snake[i][1], 15, 15))
 
